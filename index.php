@@ -1,22 +1,44 @@
-$('#example').DataTable({
-  processing: true,
-  serverSide: true,
-  serverMethod: 'post',
-  ajax: 'server_processing.php',
-  columns: [
-    { data: 'id' },
-    { data: 'first_name' },
-    { data: 'last_name' },
-    { data: 'email' },
-    { data: 'position' },
-    {
-      data: 'id',
-      render: function(data, type, row) {
-        return `
-          <a href="edit.php?id=${data}" class="btn-edit">✏️</a>
-          <a href="delete.php?id=${data}" class="btn-delete" onclick="return confirm('ลบข้อมูลนี้?')">🗑️</a>
-        `;
-      }
-    }
-  ]
-});
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Employee Dashboard</title>
+  <link rel="stylesheet" href="style.css" />
+
+  <!-- DataTables CSS -->
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.min.css" />
+</head>
+<body>
+
+  <h2>Employee Table</h2>
+
+  <!-- Filter -->
+  <label for="genderFilter">Filter by Gender:</label>
+  <select id="genderFilter">
+    <option value="">All</option>
+    <option value="Male">Male</option>
+    <option value="Female">Female</option>
+  </select>
+
+  <div class="table-container">
+    <table id="employeeTable" class="display nowrap" style="width:100%">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>First name</th>
+          <th>Last name</th>
+          <th>Email</th>
+          <th>Position</th>
+          <th>Gender</th>
+        </tr>
+      </thead>
+    </table>
+  </div>
+
+  <!-- JS -->
+  <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+  <script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
