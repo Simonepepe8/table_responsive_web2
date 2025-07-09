@@ -1,3 +1,7 @@
+<?php
+require 'auth.php';
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,19 +14,19 @@
   <link rel="stylesheet" href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.min.css" />
 </head>
 <body>
-
-  <h2>Employee Table</h2>
-
-  <!-- Filter -->
-  <label for="genderFilter">Filter by Gender:</label>
-  <select id="genderFilter">
-    <option value="">All</option>
-    <option value="Male">Male</option>
+  <header></header>
+    <h1>Employee Dashboard</h1>
+  </header>
+  <main>
+    <!--<label for="genderFilter">Filter by Gender:</label>
+    <select id="genderFilter">
+      <option value="">All</option>
+      <option value="Male">Male</option>
     <option value="Female">Female</option>
-  </select>
+  </select>-->
 
-  <div class="table-container">
-    <table id="employeeTable" class="display nowrap" style="width:100%">
+  <!--<div class="table-container">-->
+    <table id="employeeTable" class="display">
       <thead>
         <tr>
           <th>ID</th>
@@ -34,7 +38,7 @@
         </tr>
       </thead>
     </table>
-  </div>
+ <!-- </div>-->
 
   <!-- JS -->
   <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
