@@ -1,1 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Employee Dashboard</title>
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.min.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
 
+<div class="alert" id="alertBox">
+  <span id="alertMsg"></span>
+  <button onclick="closeAlert()">&times;</button>
+</div>
+
+<div class="overlay" id="overlay"></div>
+<div class="popup" id="crudPopup">
+  <h3 id="popupTitle">Add Employee</h3>
+  <form id="crudForm">
+    <input type="hidden" name="id" id="empId">
+    <label>First Name: <input type="text" name="first_name" required></label><br><br>
+    <label>Last Name: <input type="text" name="last_name" required></label><br><br>
+    <label>Email: <input type="email" name="email" required></label><br><br>
+    <label>Position: <input type="text" name="position"></label><br><br>
+    <label>Gender: 
+      <select name="gender">
+        <option value="">Select</option>
+        <option value="Male">Male</option>
+        <option value="Female">Female</option>
+      </select>
+    </label><br><br>
+    <button type="submit">Save</button>
+    <button type="button" onclick="closePopup()">Cancel</button>
+  </form>
+</div>
+
+<h1>Employee Dashboard</h1>
+<button onclick="openPopup('add')">+ Add Employee</button>
+<table id="employeeTable" class="display" style="width:100%">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>First name</th>
+      <th>Last name</th>
+      <th>Email</th>
+      <th>Position</th>
+      <th>Gender</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+</table>
+
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
+<script src="script.js"></script>
+<script>
+  function showAlertByType(type, data) {
+    let message = '';
+    switch (type) {
+      case 'add':
+        message = `✅ เพิ่มพนักงานใหม่: ${data.first_name} ${data.last_name}`;
+        break;
+      case 'edit':
+        message = `✏️ แก้ไขพนักงานลำดับ #${data.id} เป็น ${data.first_name} ${data.last_name}`;
+        break;
+      case 'delete':
+        message = `🗑️ ลบพนักงาน: ${data.first_name} ${data.last_name}`;
+        break;
+      default:
+        message = 'ดำเนินการสำเร็จ';
+    }
+    $('#alertMsg').html(message);
+    $('#alertBox').fadeIn();
+  }
+</script>
+</body>
+</html>
