@@ -22,6 +22,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <a href="logout.php" class="logout-btn">ออกจากระบบ</a>
   <div class="login-container">
     <h2>เข้าสู่ระบบ</h2>
     <?php if (isset($error)) echo "<p class='error'>$error</p>"; ?>
