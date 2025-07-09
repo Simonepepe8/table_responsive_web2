@@ -1,100 +1,46 @@
+
+
 <!DOCTYPE html>
-<html lang="th">
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>รายชื่อพนักงาน</title>
+  <title>Employee Dashboard</title>
   <link rel="stylesheet" href="style.css" />
-  <script>
-			$(document).ready(function() {
-				
-				//คำสั่ง Javascript สำหรับเรียกใช้งาน Datatable
-				$('#myTable').DataTable( {
-					"processing": true,
-					"serverSide": true,
-					'serverMethod': 'post',
-					"ajax": "server_processing.php",
-					      'columns': [
-							  { data: 'first_name' },
-							  { data: 'last_name' },
-							  { data: 'email' },
-                { data: 'position' },
-                { data: 'age' }
-						  ]
-				} );
-			} );
-	</script>
+
+  <!-- DataTables CSS -->
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.min.css" />
 </head>
 <body>
   <header>
-    <h1>รายชื่อพนักงาน</h1>
-    <span><div id="real-time-clock"></div></span>
+    <h1>Employee Dashboard</h1>
   </header>
 
   <main>
-    <table id="myTable" class="display">
-        <thead>
-            <tr>
-                <th>ลำดับ</th>
-                <th>ชื่อ</th>
-                <th>นามสกุล</th>
-                <th>ตำแหน่ง</th>
-                <th>อายุ</th>
-            </tr>
-        </thead>
+    <div class="actions">
+      <a href="add.php" class="btn btn-add">+ เพิ่มพนักงาน</a>
+      <a href="logout.php" class="btn btn-logout">ออกจากระบบ</a>
+      <!-- สามารถเพิ่มปุ่ม Export / Import / อื่น ๆ ได้ที่นี่ -->
+    </div>
+
+    <table id="employeeTable" class="display nowrap" style="width:100%">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>First name</th>
+          <th>Last name</th>
+          <th>Email</th>
+          <th>Position</th>
+          <th>Gender</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
     </table>
-    <!-- DataTables CSS -->
-<link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
-<!-- jQuery -->
-<script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
-<!-- DataTables JS -->
-<script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
-<script>
-  new DataTable('table.display'); // เรียกใช้งานเฉพาะ table ที่มี class display
-</script>
-    <script>
-        $(document).ready(function() {
-            $('#myTable').DataTable();
-        });
-    </script>
   </main>
 
-  <script>
-function updateDateTime() {
-    const clockElement = document.getElementById('real-time-clock');
-    const currentTime = new Date();
-
-    // Define arrays for days of the week and months to format the day and month names.
-    const daysOfWeek = ['อาทิตย์', 'จันทร์', 'อังคาร', 'พุธ', 'พฤหัสบดี', 'ศุกร์', 'เสาร์'];
-    const dayOfWeek = daysOfWeek[currentTime.getDay()];
-
-    const months = ['มกราคม', 'กุมภาพันธ์', 'มีนาคม', 'เมษายน', 'พฤษภาคม', 'มิถุนายน', 'กรกฎาคม', 'สิงหาคม', 'กันยายน', 'ตุลาคม', 'พฤศจิกายน', 'ธันวาคม'];
-    const month = months[currentTime.getMonth()];
-
-    const day = currentTime.getDate();
-    const year = currentTime.getFullYear();
-
-    // Calculate and format hours (in 12-hour format), minutes, seconds, and AM/PM.
-    let hours = currentTime.getHours();
-    const ampm = hours >= 12 ? 'PM' : 'AM';
-    hours = hours % 12 || 12;
-    const minutes = currentTime.getMinutes().toString().padStart(2, '0');
-    const seconds = currentTime.getSeconds().toString().padStart(2, '0');
-
-    // Construct the date and time string in the desired format.
-    const dateTimeString = `วัน${dayOfWeek}ที่ ${day} / ${month} / ${year} เวลา: ${hours}:${minutes}:${seconds} ${ampm}`;
-    clockElement.textContent = dateTimeString;
-}
-
-// Update the date and time every second (1000 milliseconds).
-setInterval(updateDateTime, 1000);
-
-// Initial update.
-updateDateTime();
-</script>
-
-  <footer>
-    &copy; 2025 บริษัท...... All rights reserved.
-  </footer>
+  <!-- JS -->
+  <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+  <script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>
